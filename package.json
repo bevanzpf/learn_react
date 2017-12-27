@@ -1,0 +1,6 @@
+{
+    "name": "learn-react",
+    "scripts": {
+        "start": "webpack-dev-server --progress --colors --hot --inline --host 0.0.0.0"
+    }
+}
