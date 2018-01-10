@@ -47,8 +47,10 @@ def get_weather_info(country, region_name, city):
     return weather
 
 # create new diary formated by time 
-date = time.strftime('%Y-%m-%d',time.localtime(time.time()))
-name = time.strftime('%Y-%m-%d_%H:%M:%S.md',time.localtime(time.time()))
+local = time.localtime(time.time())
+date = time.strftime('%Y-%m-%d',local)
+week = time.strftime('%a', local)
+name = time.strftime('%Y-%m-%d_%H:%M:%S.md',local)
 command = 'touch {}'.format(name)
 os.system(command)
 print "new file: {} had been created".format(name)
@@ -62,10 +64,14 @@ if not (country and origion_name and city):
 weather = get_weather_info(country.lower(), origion_name.lower(), city.lower()) 
 
 if weather:
-  print "{}<===>{}·{}<===>{}".format(date, origion_name, city, weather)
+  print "{}<===>{}<===>{}·{}<===>{}".format(date, week, origion_name, city, weather)
 
   with open(name, 'w')as f:
-    string = "__date: __{}\r\n__weather: __{}\r\n__location: __{}\r\n".format(date, weather, city)
+    string =("__date: __{}\r\n" \
+     + "__week: __{}\r\n" \
+     + "__weather: __{}\r\n" \
+     + "__location: __{}\r\n" \
+    ).format(date, week, weather, city)
     f.write(string)
 
 else:
