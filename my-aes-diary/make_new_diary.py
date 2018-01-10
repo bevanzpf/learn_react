@@ -67,10 +67,10 @@ if weather:
   print "{}<===>{}<===>{}·{}<===>{}".format(date, week, origion_name, city, weather)
 
   with open(name, 'w')as f:
-    string =("__date: __{}\r\n" \
-     + "__week: __{}\r\n" \
-     + "__weather: __{}\r\n" \
-     + "__location: __{}\r\n" \
+    string =("__date:__ {}  \r\n" \
+     + "__week:__ {}  \r\n" \
+     + "__weather:__ {}  \r\n" \
+     + "__location:__ {}  \r\n" \
     ).format(date, week, weather, city)
     f.write(string)
 
