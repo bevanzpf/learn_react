@@ -18,7 +18,7 @@ class Index extends React.Component{
     return( //only return one dom node
       <div>
         <ComponentHeader/>
-        <Body/>
+        <Body userid={12345}/>
         <ComponentFooder/>
       </div>
     );
