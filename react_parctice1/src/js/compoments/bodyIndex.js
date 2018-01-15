@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import BodyChild from "./bodychild"
 
 export default class Body extends Component{
   constructor(){
@@ -9,18 +10,28 @@ export default class Body extends Component{
     };
   }
 
+  changeUserInfo(){
+    this.setState({age: 50});
+  }
+  handleChildValueChange(event){
+    this.setState({age: event.target.value});
+  }
   render(){
-    setTimeout(()=>{
-      this.setState({username: "change it"});
-    }, 4000);
-
     return(
       <div>
         <h2>the main content of page</h2>
         <p>
-        {this.state.username}
-        {this.props.userid}
+        username: {this.state.username}
         </p>
+        <p>
+        age: {this.state.age}
+        </p>
+        {this.props.userid}
+        <input type='button' value='submit' onClick ={this.changeUserInfo.bind(this)}/>
+        <br/>
+        <BodyChild handleChildValueChange={this.handleChildValueChange.bind(this)}/>
+
+        
       </div>
     )
   }
