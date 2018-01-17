@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
+var css = require("../../css/footer.css");
 
 export default class ComponentFooter extends Component{
   render(){
+    console.log(css);
     return(
-      <header>
+      <footer className={css.miniFooter}>
         <h1>this is footer</h1>
-      </header>
+      </footer>
     )
   }
 }

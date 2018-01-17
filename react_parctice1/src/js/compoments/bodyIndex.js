@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
-import BodyChild from "./bodychild"
+import ReactDOM from 'react-dom';
+import BodyChild from "./bodychild";
+import PropTypes from 'prop-types';
+import { Input } from 'antd';
+const Search = Input.Search;
 
 export default class Body extends Component{
   constructor(){
@@ -10,8 +14,12 @@ export default class Body extends Component{
     };
   }
 
-  changeUserInfo(){
-    this.setState({age: 50});
+  changeUserInfo(age){
+    this.setState({age: age});
+    var mySubmitButton = document.getElementById("submitButton");
+    ReactDOM.findDOMNode(mySubmitButton).style.color="red";
+    console.log(this.refs.submitButton);
+    this.refs.submitButton1.style.color="blue";
   }
   handleChildValueChange(event){
     this.setState({age: event.target.value});
@@ -19,6 +27,12 @@ export default class Body extends Component{
   render(){
     return(
       <div>
+        <Search
+          placeholder="input search text"
+          onSearch={value => console.log(value)}
+          style={{ width: 200 , height: 20}}
+        />
+        <br></br>
         <h2>the main content of page</h2>
         <p>
         username: {this.state.username}
@@ -26,8 +40,9 @@ export default class Body extends Component{
         <p>
         age: {this.state.age}
         </p>
-        {this.props.userid}
-        <input type='button' value='submit' onClick ={this.changeUserInfo.bind(this)}/>
+        params from parant: userid: {this.props.userid}
+        <Input placeholder="Basic usage" />
+        <Input type='button' id="submitButton" ref="submitButton" value='submit' onClick ={this.changeUserInfo.bind(this, 90)}/>
         <br/>
         <BodyChild handleChildValueChange={this.handleChildValueChange.bind(this)}/>
 
@@ -35,4 +50,12 @@ export default class Body extends Component{
       </div>
     )
   }
+}
+
+Body.propTypes = {
+  userid: PropTypes.number.isRequired
+};
+
+Body.defaultProps = {
+  userid: "this is a default userid"
 }
