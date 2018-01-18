@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import BodyChild from "./bodychild";
 import PropTypes from 'prop-types';
 import { Input } from 'antd';
+
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import ComponentHeader from './header';
+
 const Search = Input.Search;
 
 export default class Body extends Component{
@@ -45,8 +49,11 @@ export default class Body extends Component{
         <Input type='button' id="submitButton" ref="submitButton" value='submit' onClick ={this.changeUserInfo.bind(this, 90)}/>
         <br/>
         <BodyChild handleChildValueChange={this.handleChildValueChange.bind(this)}/>
+ 
+          <div>
+            <Link to="header"> header again </Link>
+          </div>
 
-        
       </div>
     )
   }

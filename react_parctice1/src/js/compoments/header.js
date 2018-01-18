@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 var React = require('react');
 var ReactDOM = require('react-dom');
 
@@ -31,6 +32,8 @@ export default class ComponentHeader extends React.Component{
 
 		return(
 			<header style={styleComponentHeader.header}   onClick={this.switchHeader.bind(this)}>
+			    <Link to="/list/123"> list </Link>
+          <Link to="/main"> main </Link>
 			    <h1> this is header </h1>
 			</header>
         )

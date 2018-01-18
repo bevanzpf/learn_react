@@ -2,7 +2,7 @@
   "name": "react_parctice1",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "root.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --progress --colors --hot --inline --host 0.0.0.0"
@@ -15,7 +15,9 @@
     "babel-preset-react": "^6.24.1",
     "babelify": "^8.0.0",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
     "babel": "^6.23.0",

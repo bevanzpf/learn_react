@@ -4,7 +4,7 @@ import ComponentHeader from './compoments/header';
 import ComponentFooder from './compoments/footer';
 import Body from './compoments/bodyIndex'
 
-class Index extends React.Component{
+export default class Index extends React.Component{
 
   componentWillMount(){
     console.log("index will mount");
@@ -18,11 +18,11 @@ class Index extends React.Component{
     return( //only return one dom node
       <div>
         <ComponentHeader/>
-        <Body userid={12345}/>
+        {this.props.children}
         <ComponentFooder/>
       </div>
     );
   }
 }
 
-ReactDOM.render(<Index/>, document.getElementById('root'));
+
