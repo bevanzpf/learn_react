@@ -71,8 +71,8 @@ if __name__ == '__main__':
         res_list.append(res)
 
     conf_str = json.dumps(config)
-    #with open(config_file, 'w') as f: # TODO 更新行数
-        #f.write(conf_str)
+    with open(config_file, 'w') as f: #更新行数
+        f.write(conf_str)
 
     messages = get_dingtalk_msg(res_list)
     send_msg(messages)
