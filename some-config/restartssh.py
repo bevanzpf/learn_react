@@ -4,10 +4,16 @@ import os
 import re
 
 #ps -ef | grep ssh\ -p\ 22\ -f\ -N | grep -v grep | awk '{print $2}'
-ps = subprocess.Popen(('ps','-ef'), stdout=subprocess.PIPE)
-process = subprocess.check_output(("grep", "ssh\ -p\ 22\ -f\ -N" ), stdin=ps.stdout);
-ps.wait()
-print(process)
+try:
+    ps = subprocess.Popen(('ps','-ef'), stdout=subprocess.PIPE)
+    process = subprocess.check_output(("grep", "ssh\ -p\ 22\ -f\ -N" ), stdin=ps.stdout);
+    ps.wait()
+    print(process)
+except:
+    command = "ssh -p 22 -f -N -D 0.0.0.0:1090 nautilis@47.90.206.255"
+    os.system(command)   
+    exit() 
+
 processes = process.split("\n")
 for process in processes:
     match_obj = re.search("nautilis\ *(\d*)", process)
@@ -18,3 +24,4 @@ for process in processes:
 
 command = "ssh -p 22 -f -N -D 0.0.0.0:1090 nautilis@47.90.206.255"
 os.system(command)
+
