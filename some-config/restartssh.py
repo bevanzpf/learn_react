@@ -5,23 +5,21 @@ import re
 
 #ps -ef | grep ssh\ -p\ 22\ -f\ -N | grep -v grep | awk '{print $2}'
 try:
-    ps = subprocess.Popen(('ps','-ef'), stdout=subprocess.PIPE)
-    process = subprocess.check_output(("grep", "ssh\ -p\ 22\ -f\ -N" ), stdin=ps.stdout);
+    ps = subprocess.Popen(('ps', '-ef'), stdout=subprocess.PIPE)
+    grep = subprocess.Popen(('grep', 'ssh\ -p\ 22\ -f\ -N' ), stdin=ps.stdout, stdout=subprocess.PIPE)
+    awk = subprocess.check_output(('awk', '{print $2}'), stdin=grep.stdout)
     ps.wait()
-    print(process)
+    grep.wait()
+    print(awk)
 except:
     command = "ssh -p 22 -f -N -D 0.0.0.0:1090 nautilis@47.90.206.255"
-    os.system(command)   
-    exit() 
+    os.system(command)
+    exit()
 
-processes = process.split("\n")
-for process in processes:
-    match_obj = re.search("nautilis\ *(\d*)", process)
-    if match_obj != None:
-        print("matched...", match_obj.group(1))
-        pid = match_obj.group(1) 
-        subprocess.check_output(["kill", pid])   
+pids = [p for p in awk.split('\n') if re.match("^\d", p)]
+for pid in pids:
+    print("to kill...%s" % (pid))
+    subprocess.check_output(["kill", pid])
 
 command = "ssh -p 22 -f -N -D 0.0.0.0:1090 nautilis@47.90.206.255"
 os.system(command)
-
